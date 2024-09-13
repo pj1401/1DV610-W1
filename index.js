@@ -1,31 +1,32 @@
-const inputSentence = process.argv.slice(2)
+const inputSentenceForm = document.querySelector('#inputSentence')
+const formInput = inputSentenceForm.querySelector('input')
 
-let longestWord = 'a'
+inputSentenceForm.addEventListener('submit', (event) => sentenceHandler(event))
 
-// Counting section
-for (const word of inputSentence) {
-  if (word.length >= longestWord.length) {
-    longestWord = word
+function sentenceHandler (event) {
+  event.preventDefault()
+  console.log(formInput.value)
+  const inputSentence = formInput.value.split(' ')
+  let longestWord = 'a'
+  // Counting section
+  for (const word of inputSentence) {
+    if (word.length >= longestWord.length) {
+      longestWord = word
+    }
   }
-}
 
-console.log(`longest word is ${longestWord}`)
-console.log('-----------------------------------------------------------------')
+  console.log(`longest word is ${longestWord}`)
+  console.log('-----------------------------------------------------------------')
+  // Sorting section
+  inputSentence.sort((a, b) => {
+    return b.length - a.length
+  })
 
+  console.log(inputSentence)
+  console.log('-----------------------------------------------------------------')
+  // console.log("\x1b[34m]", "Color text")
 
-// Sorting section
-inputSentence.sort((a, b) => {
-  return b.length - a.length
-})
-
-console.log(inputSentence)
-console.log('-----------------------------------------------------------------')
-
-// console.log("\x1b[34m]", "Color text")
-
-words = inputSentence.length
-
-// for (let i = 0; i < words; i++) {
+  // const words = inputSentence.length
   for (const word of inputSentence) {
     for (const char of word) {
       if (char === 'a' || char === 'o' || char === 'i' || char === 'e' || char === 'u' || char === 'y') {
@@ -35,4 +36,6 @@ words = inputSentence.length
       }
     }
   }
-// }
+
+  document.querySelector('#outputText').textContent = longestWord
+}

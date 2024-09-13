@@ -2,12 +2,19 @@
   "name": "workshop1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "browser": "./index.js",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.5"
+  }
 }
